@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+        <link rel="stylesheet" href="{% static 'css/forum/news-page.css'%}" type="text/css">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="back" style="margin-left: 45px">
+        <div class="base" style="margin-right:100px;margin-left:70px;padding:5%;border-radius:10px;">
+            <ul style="list-style-type: none;">
+                <li class="news-title"><h1>{{ news.title }}</h1></li>
+                <li class="blogs-author">
+                    <a style="text-decoration:none;color:black" href="{% url 'user-details' news.news_author.id %}">
+                            {{ news.news_author }}
+                            <date style="font-size:16px;color: #6c757d!important; margin-left:10px">{{ news.news_date }}</date>
+                    </a>
+                </li>
+                <ul class="categories" style="list-style-type: none;">
+                    {% if news.cat1 != None %}<li><a href="{% url 'category' news.cat1.id %}">{{ news.cat1 }}</a> </li>{% endif  %}
+                    {% if news.cat2 != None %}<li><a href="{% url 'category' news.cat2.id %}">{{ news.cat2 }}</a> </li>{% endif  %}
+                    {% if news.cat3 != None %}<li><a href="{% url 'category' news.cat3.id %}">{{ news.cat3 }}</a></li>{% endif  %}
+                    {% if news.cat4 != None %}<li><a href="{% url 'category' news.cat4.id %}">{{ news.cat4 }}</a></li>{% endif  %}
+                    {% if news.cat4 != None %}<li><a href="{% url 'category' news.cat4.id %}">{{ news.cat4 }}</a></li>{% endif  %}
+                    {% if news.cat5 != None %}<li><a href="{% url 'category' news.cat5.id %}">{{ news.cat5 }}</a></li>{% endif  %}
+                </ul>
+                <li class="news-text"  style="white-space:pre-line" align="justify">{{ news.full_text}}</li>
+            </ul>
+
+            <h3 style="margin-top:60px;">Комментарии:</h3>
+
+            {% for comment in comments %}
+                {% if comment.dog.title == news.title %}
+                    <hr>
+                    <ul class="comments-list" style="list-style-type: none;">
+
+                        <li class="comment-author"><a style="text-decoration:none;color:black" href="{% url 'user-details' comment.comment_author.id %}">{{ comment.comment_author }}</a></li>
+                        <li class="comment-date" style="font-size:13px;color: #6c757d!important;">{{ comment.comment_date }}</li>
+                        <li class="comment-text" style="font-size:20px">{{ comment.text }}</li>
+
+
+                    </ul>
+
+                {% endif %}
+            {% endfor %}
+             {% if user.is_authenticated %}
+                <form id="comment-create-form" method="post">
+                    {% csrf_token %}
+                    {{comment_create_form.text}}<br>
+
+                      <span>{{ error }}</span>
+                    <input style="padding:0" id="submit" type="submit" value="Оставить комментарий"
+                                                class="btn btn-submit" name ="btn-create-comment">
+                </form>
+              {% else %}
+                <a href="/login" style="text-decoration:none;color:black">Ввойдите в аккаунт, чтобы оставить комментарий</a>
+
+              {% endif %}
+
+        </div>
+</div>
+{% endblock %}

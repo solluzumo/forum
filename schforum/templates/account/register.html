@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+{% block title%}
+    Регестрация
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="back" style="margin-left: 45px;">
+        <div class="base" style="background-color:#f0f0f0;margin-right:400px;
+                                                        margin-left:280px;padding:5%;border-radius:10px">
+  <form method="POST" class ="form-group">
+      {% csrf_token %}
+      {{ form|crispy }}
+    <button type="submit" class ="btn btn-success">Зарегестрироваться</button>
+  </form>
+        </div>
+</div>
+{% endblock %}

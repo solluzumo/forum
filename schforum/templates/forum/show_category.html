@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+<div class="back" style="margin-left: 45px">
+        <div class="base" style="margin-right:100px;margin-left:70px;padding:5%;border-radius:10px;">
+
+            <h4 class="title">Все категории</h4>
+            <ul class="categories" style="list-style-type: none;padding:0">
+
+                {% for cat in cats %}
+                    {% if cat_selected == cat.id%}
+                        <li style="color:blue">{{ cat.name }}</li>
+                    {% else %}
+                        <li><a style="text-decoration:none;color:black" href="{% url 'category' cat.id %}">{{ cat.name }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+            </ul>
+            <ul class="content-found" style="list-style-type: none;padding:0">
+
+                {% for new in news %}
+
+                    {% if new.cat1.id  == cat_selected or new.cat2.id == cat_selected or new.cat3.id == cat_selected or new.cat4.id == cat_selected or new.cat5.id == cat_selected %}
+                        <hr>
+                        <h3 class="news-content-title" ><a style="text-decoration:none;color:black" href="{% url 'news-details' new.id %}">{{ new.title }}</a></h3>
+                        <li class="news-content-anons">{{ new.anons }}</li>
+                        <li class="new-content-author">{{ new.news_author }}</li>
+
+                    {% endif %}
+                {% endfor %}
+                {% for blog in blogs %}
+                    {% if blog.cat1.id == cat_selected or blog.cat2.id == cat_selected or blog.cat3.id == cat_selected or blog.cat4.id == cat_selected or blog.cat5.id == cat_selected %}
+                        <hr>
+                        <h3 class="blog-content-title"><a style="text-decoration:none;color:black" href="{% url 'blog-details' blog.id %}">{{ blog.title }}</a></h3>
+                        <li class="blog-content-anons">{{ blog.anons }}</li>
+                        <li class="blog-content-author">{{ blog.blog_author }}</li>
+
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+
+        </div>
+</div>
+{% endblock %}

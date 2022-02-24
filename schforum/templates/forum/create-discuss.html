@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+            <link rel="stylesheet" href="{% static 'css/forum/create-disc.css'%}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="features">
+
+            <h1>Добавить статью</h1>
+
+            <form id="form" method="post">
+                <ul style="list-style-type: none;">
+                    {% csrf_token %}
+                    <li class="form">{{form.title}}</li>
+                    <li class="form"> {{form.anons}}</li>
+                    <li class="form">{{form.full_text}} </li>
+                    <li class="form">{{form.blog_date}}</li>
+                    <li class="form">{{form.cat1}}</li>
+                    <li class="form">{{form.cat2}}</li>
+                    <li class="form">{{form.cat3}}</li>
+                    <li class="form">{{form.cat4}}</li>
+                    <li class="form">{{form.cat5}}</li>
+                </ul>
+                <span>{{ error }}</span>
+                <input id="submit" type="submit" value="Отправить новость" class="btn btn-submit">
+
+            </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+        <link rel="stylesheet" href="{% static 'css/forum/blogs-page.css'%}" type="text/css">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="back" style="margin-left: 45px">
+        <div class="base" style="margin-right:100px;margin-left:70px;padding:5%;border-radius:10px;">
+            <ul style="list-style-type: none;padding-left:0">
+                <li class="blogs-title"><h1>{{ blogs.title }}</h1></li>
+                <li class="blogs-author">
+                    <a style="text-decoration:none;color:black" href="{% url 'user-details' blogs.blog_author.id %}">
+                            {{ blogs.blog_author }}
+                            <date style="font-size:16px;color: #6c757d!important; margin-left:10px">{{ blogs.blog_date }}</date>
+                    </a>
+                </li>
+                <ul class="categories" style="list-style-type: none;padding:0;margin:0">
+                    {% if blogs.cat1 != None %}<li style="display: inline;;margin-right:5px"><a style="text-decoration:none;color:#757575" href="{% url 'category' blogs.cat1.id %}">{{ blogs.cat1 }}</a> </li>{% endif  %}
+                    {% if blogs.cat2 != None %}<li style="display: inline;;margin-right:5px"><a style="text-decoration:none;color:#757575" href="{% url 'category' blogs.cat2.id %}">{{ blogs.cat2 }}</a> </li>{% endif  %}
+                    {% if blogs.cat3 != None %}<li style="display: inline;;margin-right:5px"><a style="text-decoration:none;color:#757575" href="{% url 'category' blogs.cat3.id %}">{{ blogs.cat3 }}</a></li>{% endif  %}
+                    {% if blogs.cat4 != None %}<li style="display: inline;;margin-right:5px"><a style="text-decoration:none;color:#757575" href="{% url 'category' blogs.cat4.id %}">{{ blogs.cat4 }}</a></li>{% endif  %}
+                    {% if blogs.cat4 != None %}<li style="display: inline;;margin-right:5px"><a style="text-decoration:none;color:#757575" href="{% url 'category' blogs.cat4.id %}">{{ blogs.cat4 }}</a></li>{% endif  %}
+                    {% if blogs.cat5 != None %}<li style="display: inline;;margin-right:5px"><a style="text-decoration:none;color:#757575" href="{% url 'category' blogs.cat5.id %}">{{ blogs.cat5 }}</a></li>{% endif  %}
+                </ul>
+                <li class="blogs-text" style="white-space:pre-line" align="justify">{{ blogs.full_text}}</li>
+            </ul>
+
+            <h3 style="margin-top:60px;">Комментарии:</h3>
+
+            {% for comment in comments %}
+                {% if comment.dog.title == blogs.title %}
+                    <hr>
+                    <ul class="comments-list" style="list-style-type: none;">
+                        <a style="text-decoration:none;color:black" href="{% url 'user-details' comment.comment_author.id %}">{{ comment.comment_author }}</a>
+                        <date style="margin-left:5px;font-size:13px;color: #6c757d!important;">{{ comment.comment_date }}</date>
+                        <p style="font-size:20px">{{ comment.text }}</p>
+
+                    </ul>
+
+                {% endif %}
+            {% endfor %}
+             {% if user.is_authenticated %}
+                <form id="comment-create-form" method="post">
+                    {% csrf_token %}
+                    {{comment_create_form.text}}<br>
+
+                      <span>{{ error }}</span>
+                    <input style="padding:0" id="submit" type="submit" value="Оставить комментарий"
+                                                class="btn btn-submit" name ="btn-create-comment">
+                </form>
+              {% else %}
+                <a href="/login" style="text-decoration:none;color:black">Ввойдите в аккаунт, чтобы оставить комментарий</a>
+
+              {% endif %}
+
+        </div>
+</div>
+{% endblock %}

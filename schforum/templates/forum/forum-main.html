@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block header %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.88.1">
+        <title>Blog Template · Bootstrap v5.1</title>
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/blog/">
+        <link rel="stylesheet" href="{% static 'css/forum/forum-main.css'%}" type="text/css">
+
+
+
+        <!-- Bootstrap core CSS -->
+        <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+        <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+        <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+        <link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
+        <link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+        <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
+        <meta name="theme-color" content="#7952b3">
+
+
+        <style>
+        .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        }
+
+        @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+        }
+        }
+        </style>
+
+
+        <!-- Custom styles for this template -->
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&amp;display=swap" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="blog.css" rel="stylesheet">
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="back" style="margin-left: 45px">
+        <div class="base" style="margin-right:100px;margin-left:70px;padding:5%;border-radius:10px;">
+
+
+
+                <main class="container">
+                  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+                    <div class="col-md-6 px-0">
+                      <h1 class="display-4 fst-italic">Добро пожаловать DrowNews!</h1>
+                      <p class="lead my-3">Этот сайт является учебным проектом. <p class="lead my-3">Здесь вы можете найти статьи и новости на абсолютно разные темы!</p> </p>
+
+                    </div>
+                  </div>
+
+                  <div class="row mb-2">
+                    <div class="col-md-6">
+                      <div style="height: 289px;" class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 ">
+                        <div class="col p-4 d-flex flex-column position-static">
+                          <strong class="d-inline-block mb-2 text-primary"><a style="text-decoration:none;color:black" href="{% url 'category' blog1.cat1.id %}">{{blog1.cat1}}</a></strong>
+                          <h3 class="mb-0">
+                              <a style="text-decoration:none;color:black" href="{% url 'blog-details' blog2.id %}">
+                                {{blog1.title}}
+                              </a>
+                          </h3>
+                          <div class="mb-1 text-muted">{{blog1.blog_date}}</div>
+                          <p style="max-height:334px">{{blog1.anons}}</p>
+                        </div>
+                        <div class="col-auto d-none d-lg-block" style="margin-top:60px">
+                          <img src = "{%static '/media/search.png'%}" class="bd-placeholder-img" width="200" height="200" preserveAspectRatio="xMidYMid slice" focusable="false">
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div style="height: 289px;" class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 ">
+                        <div class="col p-4 d-flex flex-column position-static">
+                          <strong class="d-inline-block mb-2 text-primary"><a style="text-decoration:none;color:black" href="{% url 'category' blog2.cat1.id %}">{{blog2.cat1}}</a></strong>
+                          <h3 style=" font-size: calc(1rem + .2vw);" class="mb-0">
+                              <a style="text-decoration:none;color:black" href="{% url 'blog-details' blog2.id %}">
+                                {{blog2.title}}
+                              </a>
+                          </h3>
+                          <div class="mb-1 text-muted">{{blog2.blog_date}}</div>
+                          <p>{{blog2.anons}}</p>
+                        </div>
+                        <div class="col-auto d-none d-lg-block" style="margin-top:60px">
+                          <img src = "{%static '/media/search.png'%}" class="bd-placeholder-img" width="200" height="200" preserveAspectRatio="xMidYMid slice" focusable="false">
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row g-5">
+                    <div class="col-md-8">
+                      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                        Новости
+                      </h3>
+
+                      <article class="news-list">
+                            {% for el in news %}
+
+                            <div class="news-post" style="overflow:hidden;">
+
+                                <div class="news-author">
+                                    <a style="text-decoration:none;color:black" href="{% url 'user-details' el.news_author.id %}">{{ el.news_author }}</a>
+                                    <date class="title" style="font-size:16px;color: #6c757d!important; margin-left:10px">{{ el.news_date }}</date>
+                                </div>
+                                <h4 class="title" style="margin:0"><a style="text-decoration:none;color:black;" href="{% url 'news-details' el.id %}">{{ el.title }}</a></h4>
+                                <ul class="categories" style="list-style-type: none;padding:0;margin:0">
+                                    {% if el.cat1 != None %}
+                                        <li style="display: inline;;margin-right:5px">
+                                            <a style="text-decoration:none;color:black" href="{% url 'category' el.cat1.id %}">
+                                                {{el.cat1}}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    {% if el.cat2 != None %}
+                                        <li style="display: inline;;margin-right:5px">
+                                            <a style="text-decoration:none;color:black" href="{% url 'category' el.cat2.id %}">
+                                                {{el.cat2}}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    {% if el.cat3 != None %}
+                                        <li style="display: inline;margin-right:5px">
+                                            <a style="text-decoration:none;color:black" href="{% url 'category' el.cat3.id %}">
+                                                {{el.cat3}}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    {% if el.cat4 != None %}
+                                        <li style="display: inline;;margin-right:5px">
+                                            <a style="text-decoration:none;color:black" href="{% url 'category' el.cat4.id %}">
+                                                {{el.cat4}}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    {% if el.cat5 != None %}
+                                        <li style="display: inline;;margin-right:5px">
+                                            <a style="text-decoration:none;color:black" href="{% url 'category' el.cat5.id %}">
+                                                {{el.cat5}}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+
+
+
+                                <div class="anons" style="font-size:19px">{{ el.anons }}</div>
+                            </div>
+                            <hr>
+                          {% endfor %}
+                      </article>
+                    </div>
+                  </div>
+                  <footer class="blog-footer" style="margin-top:30px">
+                    <p>
+                      <a style="text-decoration:none;color:black" href="#">Вернуться в начало</a>
+                    </p>
+                  </footer>
+                </main>
+        </div>
+
+</div>
+{% endblock %}

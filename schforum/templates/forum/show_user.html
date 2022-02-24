@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+<div class="back" style="margin-left: 45px">
+        <div class="base" style="margin-right:100px;margin-left:70px;padding:5%;border-radius:10px;">
+            <ul style="list-style-type: none;padding:0;margin:0">
+                <li>Никнейм: {{user}}</li>
+                <li>Даты регестрации: {{user.date_joined}}</li>
+                <li>Пол: {{user.sex}}</li>
+                <li>Фото профиля: <img src="{% static avatar %}" height='20px' alt=""></li>
+                <li>Специальность: {{user.specialization}}</li>
+                <li>Возраст: {{user.age}} лет</li>
+                <li>Статус: {{user.status}}</li>
+            </ul>
+        </div>
+</div>
+{% endblock %}

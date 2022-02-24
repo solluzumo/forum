@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+<div class="back" style="margin-left: 45px">
+        <div class="base" style="margin-right:100px;margin-left:70px;padding:5%;border-radius:10px;">
+            <h4 class="title">Авторы статей и новостей нашего сайта: </h4>
+
+
+          {% for author in authors %}
+            <div class="author">
+                <hr>
+                <u class="author-user">
+                    <li class="username">{{ author.username }}</li>
+                    <li class="date-joined">{{ author.date_joined }}</li>
+                    <li class="status">{{author.status}}</li>
+                </u>
+
+            </div>
+          {% endfor %}
+
+        </div>
+</div>
+{% endblock %}

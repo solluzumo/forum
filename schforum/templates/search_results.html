@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+            <link rel="stylesheet" href="{% static 'css/search/results.css'%}" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="back" style="margin-left: 45px;">
+        <div class="base" style="background-color:#f0f0f0;margin-right:100px;
+                                                        margin-left:70px;padding:5%;border-radius:10px">
+    <h1>Найдено:</h1><hr>
+        {% if news_results != 'Empty' %}
+              {% for el in news_results %}
+                    <div class="news-author">
+                            <a style="text-decoration:none;color:black" href="{% url 'user-details' el.news_author.id %}">{{ el.news_author }}</a>
+                            <date class="title" style="font-size:16px;color: #6c757d!important; margin-left:10px">{{ el.news_date }}</date>
+                        </div>
+                        <h4 class="title" style="margin:0"><a style="text-decoration:none;color:black;" href="{% url 'news-details' el.id %}">{{ el.title }}</a></h4>
+                        <ul class="categories" style="list-style-type: none;padding:0;margin:0">
+                            {% if el.cat1 != None %}
+                                <li style="display: inline;;margin-right:5px">
+                                    <a style="text-decoration:none;color:black" href="{% url 'category' el.cat1.id %}">
+                                        {{el.cat1}}
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if el.cat2 != None %}
+                                <li style="display: inline;;margin-right:5px">
+                                    <a style="text-decoration:none;color:black" href="{% url 'category' el.cat2.id %}">
+                                        {{el.cat2}}
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if el.cat3 != None %}
+                                <li style="display: inline;margin-right:5px">
+                                    <a style="text-decoration:none;color:black" href="{% url 'category' el.cat3.id %}">
+                                        {{el.cat3}}
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if el.cat4 != None %}
+                                <li style="display: inline;;margin-right:5px">
+                                    <a style="text-decoration:none;color:black" href="{% url 'category' el.cat4.id %}">
+                                        {{el.cat4}}
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if el.cat5 != None %}
+                                <li style="display: inline;;margin-right:5px">
+                                    <a style="text-decoration:none;color:black" href="{% url 'category' el.cat5.id %}">
+                                        {{el.cat5}}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+
+
+
+                                <div class="anons" style="font-size:19px">{{ el.anons }}</div>
+                            </div>
+              {% endfor %}
+                {% for el in blogs_results %}
+                        <div class="news-author">
+                            <a style="text-decoration:none;color:black" href="{% url 'user-details' el.blog_author.id %}">{{ el.blog_author }}</a>
+                            <date class="title" style="font-size:16px;color: #6c757d!important; margin-left:10px">{{ el.blog_date }}</date>
+                        </div>
+                        <h4 class="title" style="margin:0"><a style="text-decoration:none;color:black;" href="{% url 'blog-details' el.id %}">{{ el.title }}</a></h4>
+                        <ul class="categories" style="list-style-type: none;padding:0;margin:0">
+                            {% if el.cat1 != None %}
+                                <li style="display: inline;;margin-right:5px">
+                                    <a style="text-decoration:none;color:black" href="{% url 'category' el.cat1.id %}">
+                                        {{el.cat1}}
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if el.cat2 != None %}
+                                <li style="display: inline;;margin-right:5px">
+                                    <a style="text-decoration:none;color:black" href="{% url 'category' el.cat2.id %}">
+                                        {{el.cat2}}
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if el.cat3 != None %}
+                                <li style="display: inline;margin-right:5px">
+                                    <a style="text-decoration:none;color:black" href="{% url 'category' el.cat3.id %}">
+                                        {{el.cat3}}
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if el.cat4 != None %}
+                                <li style="display: inline;;margin-right:5px">
+                                    <a style="text-decoration:none;color:black" href="{% url 'category' el.cat4.id %}">
+                                        {{el.cat4}}
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if el.cat5 != None %}
+                                <li style="display: inline;;margin-right:5px">
+                                    <a style="text-decoration:none;color:black" href="{% url 'category' el.cat5.id %}">
+                                        {{el.cat5}}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+
+
+
+                                <div class="anons" style="font-size:19px">{{ el.anons }}</div>
+                            </div>
+                  {% endfor %}
+        {% elif news_results == 'Empty' %}
+            Нечего искать! Пустая строка!
+        {% endif %}
+
+
+
+        </div>
+</div>
+{% endblock %}

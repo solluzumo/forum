@@ -1,0 +1,79 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400);
+.form{
+    margin-bottom:20px;
+}
+#form{
+  position: relative;
+  width: 700px;
+  margin: 50px auto 100px auto;
+  border-radius:0;
+}
+h1{
+    width: 400px;
+    position: relative;
+    margin: 50px auto 0px auto;
+}
+#anons{
+      height: 320px;
+
+}
+input {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  width: 700px;
+  max-width: 700px;
+  height: 50px;
+  padding: 15px;
+
+  background: transparent;
+  outline: none;
+  color: #726659;
+
+  border: solid 1px #b3aca7;
+  border-bottom: none;
+
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+
+}
+
+textarea {
+  width: 700px;
+  max-width: 700px;
+  height: 440px;
+  max-height: 440px;
+  padding: 15px;
+
+  background: transparent;
+  outline: none;
+
+  color: #726659;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+
+  border: solid 1px #b3aca7;
+
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+}
+
+#submit {
+  width: 700px;
+  max-width: 700px;
+
+  padding: 0;
+  margin: -5px 0px 0px 0px;
+
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  color: #b3aca7;
+
+  outline:none;
+  cursor: pointer;
+
+  border: solid 1px #b3aca7;
+}
